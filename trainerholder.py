@@ -125,9 +125,10 @@ class TrainHolder:
         for input_file in [x for x in os.listdir(folder_name) if x.endswith('.wav')]:
             if debug_mode:
                 print('Current file is ' + input_file)
-            # Read input file
+
             filepath = os.path.join(folder_name, input_file)
-            self.testFile(filepath, res=resultStr, table_score=table_score)
+
+            resultStr += self.testFile(filepath, table_score=table_score)
 
         if debug_mode:
             print('Concluded!\n Printing results...\n')
@@ -142,7 +143,7 @@ class TrainHolder:
         if debug_mode:
             print('Results are printed!')
 
-    def testFile(self, filepath, result_file=None, res=None, table_score=False):
+    def testFile(self, filepath, result_file=None, table_score=False):
         """
         filepath : str
             path to song for predict
@@ -150,15 +151,12 @@ class TrainHolder:
         result_file : str
             path to file for logs. if is None logs are printing to cmd
 
-        res : str
-            string for logs
-
         table_score : bool
             prints scores of every model on current song
 
+        returns string with logs
         """
-        if res is None:
-            res = ""
+        res = ""
 
         features = self.getFeaturesfromWaV(filepath)
 
@@ -184,6 +182,8 @@ class TrainHolder:
         else:
             with open(result_file, 'w') as f:
                 f.write(res)
+
+        return res
 
     def save(self, folder_name, debug_mode=False):
         for model, label in self._models:

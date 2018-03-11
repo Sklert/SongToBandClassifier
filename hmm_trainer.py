@@ -15,7 +15,7 @@ class HMMParams:
         self.n_components = n_components
         self.cov_type = cov_type
         self.n_iter = n_iter
-        self.tol = 1e-4
+        self.tol = tol
 
 
 class HMMTrainer:
