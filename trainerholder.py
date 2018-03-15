@@ -78,7 +78,7 @@ class TrainHolder:
                 if debug_mode:
                     print('Current file is ' + filename)
 
-                features = self.getFeaturesfromWaV(filepath)
+                features = self.getFeaturesFromWAV(filepath)
                 featureMatrix = np.append(featureMatrix, features, axis=0) if len(
                     featureMatrix) != 0 else features
 
@@ -158,7 +158,7 @@ class TrainHolder:
         """
         res = ""
 
-        features = self.getFeaturesfromWaV(filepath)
+        features = self.getFeaturesFromWAV(filepath)
 
         scores = {}
         for hmm_model, label in self._models:
@@ -195,8 +195,8 @@ class TrainHolder:
             model.load(folder_name, label, debug_mode)
             self._models.append((model, label))
 
-    def getFeaturesfromWaV(self, filename):
-        return self._mfccCalculator.getFeaturesfromWaV(filename)
+    def getFeaturesFromWAV(self, filename):
+        return self._mfccCalculator.getFeaturesFromWAV(filename)
 
     def _debConvergeInfo(self, model, label):
         print(label)

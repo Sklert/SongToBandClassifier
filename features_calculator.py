@@ -32,7 +32,7 @@ class FeauturesCalculator:
 
         self._scale = scale
 
-    def getFeaturesfromWaV(self, filename):
+    def getFeaturesFromWAV(self, filename):
         audio, sampling_freq = librosa.load(
             filename, sr=None, res_type=self._res_type)
 
